@@ -21,10 +21,22 @@ Route::get('/contacto', function () {
     return view('paginas.contacto');
 });
 
-Route::get('/actualizaciones', function () {
-    $version_uno = 'Versión 1.0';
-    $version_dos = 'Versión 2.0';
-    return view('paginas.historico-actualizaciones', compact('version_uno', 'version_dos')); 
+Route::get('/actualizaciones/{version_id?}', function ($version_id = null) {
+    $versiones = [
+        'version 1.0',
+        'version 2.0',
+        'version 3.0',
+        'version 4.0',
+        'version 5.0',
+    ];
+    
+    if(!empty($version_id)) {
+        $version = $versiones[$version_id];
+    } else {
+        $version = null;
+    }
+
+    return view('paginas.historico-actualizaciones', compact('versiones','version')); 
         /*-> with([
         'primer_version' => $version_uno, 
         'segunda_version' => $version_dos]);*/

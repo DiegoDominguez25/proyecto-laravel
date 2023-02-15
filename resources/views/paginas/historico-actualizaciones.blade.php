@@ -8,9 +8,17 @@
 </head>
 <body>
     <h1>Historico</h1>
-    <p>
-        {{$version_uno}}
-        {{$version_dos}}
-    </p>
+    <ul>
+        @foreach($versiones as $ver)
+            <li>{{$ver}}</li>
+        @endforeach
+    </ul>
+        
+    @if(!empty($version))
+        <p>
+            {{$version}}
+        </p>
+    @endif
+    
 </body>
 </html>
