@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaginaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,27 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto', function () {
-    return view('paginas.contacto');
-});
+Route::get('/contacto', [PaginaController::class, 'contacto']);
 
-Route::get('/actualizaciones/{version_id?}', function ($version_id = null) {
-    $versiones = [
-        'version 1.0',
-        'version 2.0',
-        'version 3.0',
-        'version 4.0',
-        'version 5.0',
-    ];
-    
-    if(!empty($version_id)) {
-        $version = $versiones[$version_id];
-    } else {
-        $version = null;
-    }
-
-    return view('paginas.historico-actualizaciones', compact('versiones','version')); 
-        /*-> with([
-        'primer_version' => $version_uno, 
-        'segunda_version' => $version_dos]);*/
-});
+Route::get('/actualizaciones/{version_id?}', [PaginaController::class, 'actualizaciones']);
