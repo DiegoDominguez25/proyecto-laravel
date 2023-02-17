@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/contacto', [PaginaController::class, 'contacto']);
 
+Route::post('/recibe-form-contacto', [PaginaController::class, 'recibeFormContacto']);
+
 Route::get('/actualizaciones/{version_id?}', [PaginaController::class, 'actualizaciones']);
 
 Route::get('/precios/{cupon_id?}', [PaginaController::class, 'precios']);

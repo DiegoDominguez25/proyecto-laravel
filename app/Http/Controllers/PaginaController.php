@@ -30,6 +30,20 @@ class PaginaController extends Controller
         return view('paginas.contacto');
     }
 
+    public function recibeFormContacto(Request $request)
+    {
+        
+        //Recibe información
+        //Valida datos
+        $request->validate([
+            'nombre' => 'required|max:255|min:3',
+            'correo' => ['required','email'],
+            'mensaje' => 'required',
+        ]);
+        //Inserta en base de datos
+        //Redirigirnos a otra página
+    }
+
     public function precios($cupon_id = null)
     {
         $nombre_precio = 'Precios';
