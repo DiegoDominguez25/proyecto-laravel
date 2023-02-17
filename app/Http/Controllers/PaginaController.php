@@ -29,4 +29,19 @@ class PaginaController extends Controller
     {
         return view('paginas.contacto');
     }
+
+    public function precios($cupon_id = null)
+    {
+        $nombre_precio = 'Precios';
+
+        $precios = [
+            'basico' => 12,
+            'intermedio' => 50,
+            'premium' => 100,
+        ];
+
+        $cupon = 'Cupón Aplicado';
+
+        return view('paginas.precios', compact('nombre_precio', 'precios', 'cupon'));
+    }
 }
