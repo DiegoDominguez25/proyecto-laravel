@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('pinturas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->decimal('precio', 6, 2);
         });
     }
 

@@ -12,17 +12,17 @@ class PinturaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
-        //
+        return view('paginas.producto');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create()
     {
-        //
+        return view('paginas.createProducto');
     }
 
     /**
@@ -40,7 +40,6 @@ class PinturaController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\PinturaController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,6 @@ Route::post('/recibe-form-contacto', [PaginaController::class, 'recibeFormContac
 Route::get('/actualizaciones/{version_id?}', [PaginaController::class, 'actualizaciones']);
 
 Route::get('/precios/{cupon_id?}', [PaginaController::class, 'precios']);
+
+Route::resource('pintura', PinturaController::class);
+
