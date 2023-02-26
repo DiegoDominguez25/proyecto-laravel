@@ -9,4 +9,7 @@ class Pintura extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    
+
+
 }

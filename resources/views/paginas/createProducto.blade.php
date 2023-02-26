@@ -7,6 +7,24 @@
     <title>Producto</title>
 </head>
 <body>
-    <h1>Formulario productos</h1>
+
+    <h2>Formulario productos</h2>
+
+    <form action="/pintura" method="POST">
+    @csrf
+
+        <br> <br>
+        <label for="nombre">Nombre</label>
+        <input placeholder="Roja" id="nombre" name="nombre" type="text">
+        <br> <br>
+        <label for="desc">Descripción</label>
+        <input placeholder="Pintura_roja" id="desc" name="desc" type="text">
+        <br> <br>
+        <label for="precio">Precio</label>
+        <input placeholder="55" id="precio" name="precio" type="number">
+        <br>
+        <button typw="submit">Guardar</button>
+
+    </form>
 </body>
 </html>

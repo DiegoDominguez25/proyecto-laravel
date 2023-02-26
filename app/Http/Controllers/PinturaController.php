@@ -14,7 +14,8 @@ class PinturaController extends Controller
      */
     public function index()
     {
-        return view('paginas.producto');
+        $productos = Pintura::all();
+        return view('paginas.indexProducto', compact('productos'));
     }
 
     /**
@@ -28,22 +29,30 @@ class PinturaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $articulos = new Pintura();
+
+        $articulos->nombre = $request->get('nombre');
+        $articulos->descripcion = $request->get('desc');
+        $articulos->precio = $request->get('precio');
+
+        $articulos->save();
+
+        return redirect('/pintura');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pintura $pintura): Response
+    public function show(Pintura $pintura)
     {
         //
     }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pintura $pintura): Response
+    public function edit(Pintura $pintura)
     {
         //
     }
@@ -51,7 +60,7 @@ class PinturaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pintura $pintura): RedirectResponse
+    public function update(Request $request, Pintura $pintura)
     {
         //
     }
@@ -59,7 +68,7 @@ class PinturaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pintura $pintura): RedirectResponse
+    public function destroy(Pintura $pintura)
     {
         //
     }
