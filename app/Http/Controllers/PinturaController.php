@@ -14,8 +14,8 @@ class PinturaController extends Controller
      */
     public function index()
     {
-        $productos = Pintura::all();
-        return view('paginas.indexProducto', compact('productos'));
+        $pinturas = Pintura::get();
+        return view('paginas.indexProducto', compact('pinturas'));
     }
 
     /**
@@ -33,9 +33,9 @@ class PinturaController extends Controller
     {
         $articulos = new Pintura();
 
-        $articulos->nombre = $request->get('nombre');
-        $articulos->descripcion = $request->get('desc');
-        $articulos->precio = $request->get('precio');
+        $articulos->nombre = $request->nombre;
+        $articulos->descripcion = $request->desc;
+        $articulos->precio = $request->precio;
 
         $articulos->save();
 
@@ -47,14 +47,14 @@ class PinturaController extends Controller
      */
     public function show(Pintura $pintura)
     {
-        //
+        return view('paginas.showProducto', compact('pintura'));
     }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pintura $pintura)
+    public function edit(Request $request, Pintura $pintura)
     {
-        //
+        return view('paginas.editProducto', compact('pintura'));
     }
 
     /**
@@ -62,7 +62,13 @@ class PinturaController extends Controller
      */
     public function update(Request $request, Pintura $pintura)
     {
-        //
+        $pintura->nombre = $request->nombre;
+        $pintura->descripcion = $request->desc;
+        $pintura->precio = $request->precio;
+
+        $pintura->save();
+
+        return redirect('/pintura');
     }
 
     /**

@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Productos</h1>
+    <a href="{{ route('pintura.create')}}">Agregar producto</a>
     <table>
         <thead>
             <tr>
@@ -19,12 +20,14 @@
         </thead>
 
         <tbody>
-            @foreach ($productos as $producto)
+            @foreach ($pinturas as $pintura)
                 <tr>
-                    <td>{{ $producto->id }}</td>
-                    <td>{{ $producto->nombre }}</td>
-                    <td>{{ $producto->descripcion }}</td>
-                    <td>{{ $producto->precio }}</td>
+                    <td>{{ $pintura->id }}</td>
+                    <td>{{ $pintura->nombre }}</td>
+                    <td>{{ $pintura->descripcion }}</td>
+                    <td>{{ $pintura->precio }}</td>
+                    <td><a href="{{ route('pintura.show', $pintura->id) }}">Ver detalles</a></td>
+                    <td><a href="{{ route('pintura.edit', $pintura->id) }}">Editar</a></td>
                 </tr>
             @endforeach
         </tbody>

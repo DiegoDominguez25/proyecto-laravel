@@ -10,7 +10,7 @@
 
     <h2>Formulario productos</h2>
 
-    <form action="/pintura" method="POST">
+    <form action="{{ route('pintura.store') }}" method="POST">
     @csrf
 
         <br> <br>

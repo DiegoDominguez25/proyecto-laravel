@@ -8,8 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Pintura extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    
-
-
 }
