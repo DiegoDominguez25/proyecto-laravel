@@ -76,6 +76,7 @@ class PinturaController extends Controller
      */
     public function destroy(Pintura $pintura)
     {
-        //
+        $pintura->delete();
+        return redirect()->route('pintura.index');
     }
 }
