@@ -15,13 +15,22 @@
 
         <br> <br>
         <label for="nombre">Nombre</label>
-        <input placeholder="Roja" id="nombre" name="nombre" type="text">
+        <input placeholder="Roja" id="nombre" name="nombre" type="text" value="{{ old('nombre') }}">
+        @error('nombre')
+            <i>{{ $message }}</i>
+        @enderror
         <br> <br>
         <label for="desc">Descripción</label>
-        <input placeholder="Pintura_roja" id="desc" name="desc" type="text">
+        <input placeholder="Pintura_roja" id="desc" name="desc" type="text" value="{{ old('desc') }}">
+        @error('desc')
+            <i>{{ $message }}</i>
+        @enderror
         <br> <br>
         <label for="precio">Precio</label>
-        <input placeholder="55" id="precio" name="precio" type="number">
+        <input placeholder="55" id="precio" name="precio" type="number" value="{{ old('precio') }}">
+        @error('precio')
+            <i>{{ $message }}</i>
+        @enderror
         <br>
         <button typw="submit">Guardar</button>
 

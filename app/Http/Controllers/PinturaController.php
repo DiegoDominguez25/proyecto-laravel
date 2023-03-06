@@ -31,6 +31,13 @@ class PinturaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nombre' => 'required|max:255|min:3',
+            'desc' => ['required'],
+            'precio' => 'required',
+        ]);
+
         $articulos = new Pintura();
 
         $articulos->nombre = $request->nombre;
@@ -62,6 +69,12 @@ class PinturaController extends Controller
      */
     public function update(Request $request, Pintura $pintura)
     {
+        $request->validate([
+            'nombre' => 'required|max:255|min:3',
+            'desc' => ['required'],
+            'precio' => 'required',
+        ]);
+
         $pintura->nombre = $request->nombre;
         $pintura->descripcion = $request->desc;
         $pintura->precio = $request->precio;
