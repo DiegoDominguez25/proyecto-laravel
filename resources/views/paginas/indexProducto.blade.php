@@ -1,39 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintura</title>
-</head>
-<body>
-    <h1>Productos</h1>
-    <a href="{{ route('pintura.create')}}">Agregar producto</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
+<x-layout>
 
-        <tbody>
-            @foreach ($pinturas as $pintura)
-                <tr>
-                    <td>{{ $pintura->id }}</td>
-                    <td>{{ $pintura->nombre }}</td>
-                    <td>{{ $pintura->descripcion }}</td>
-                    <td>{{ $pintura->precio }}</td>
-                    <td><a href="{{ route('pintura.show', $pintura->id) }}">Ver detalles</a></td>
-                    <td><a href="{{ route('pintura.edit', $pintura->id) }}">Editar</a></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+<x-slot:title>
+        Tabla
+</x-slot>
 
+<h2>Ver productos</h2>
+<br>
 
-
-</body>
-</html>
+<section>
+    <div class="container">
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4">
+                <div class="max-w-full overflow-x-auto">
+                <table class="table-auto w-full">
+                    <thead>
+                        <tr class="bg-primary text-center">
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent">
+                            ID
+                            </th>
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                            Nombre
+                            </th>
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                            Descripción
+                            </th>
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                            Precio
+                            </th>
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-r border-transparent">
+                            Opciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pinturas as $pintura)
+                            <tr>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
+                                    {{ $pintura->id }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    {{ $pintura->nombre }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8]">
+                                    {{ $pintura->descripcion }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    {{ $pintura->precio }}
+                                </td>
+                                <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-r border-[#E8E8E8]">
+                                <a href="{{ route('pintura.show', $pintura->id) }}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white">
+                                    Detalles
+                                </a>
+                                <a href="{{ route('pintura.edit', $pintura->id) }}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white">
+                                    Editar
+                                </a>
+                                </td>
+                                
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ====== Table Section End -->
+</x-layout>
