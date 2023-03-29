@@ -33,8 +33,8 @@ class PinturaController extends Controller
     {
 
         $request->validate([
-            'nombre' => 'required|max:255|min:3',
-            'desc' => ['required'],
+            'nombre' => 'required|max:20|min:3',
+            'desc' => ['required','max:30','min:5'],
             'precio' => 'required',
         ]);
 
