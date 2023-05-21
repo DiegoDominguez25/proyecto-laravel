@@ -27,6 +27,9 @@
                             <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
                             Precio
                             </th>
+                            <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">
+                            Categoria
+                            </th>
                             <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-r border-transparent">
                             Opciones
                             </th>
@@ -35,6 +38,7 @@
                     <tbody>
                         @foreach ($pinturas as $pintura)
                             <tr>
+
                                 <td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">
                                     {{ $pintura->id }}
                                 </td>
@@ -47,6 +51,9 @@
                                 <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
                                     {{ $pintura->precio }}
                                 </td>
+                                <td  class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8]">
+                                    {{ $pintura->categoria->tipo }}
+                                </td>
                                 <td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-r border-[#E8E8E8]">
                                 <a href="{{ route('pintura.show', $pintura->id) }}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white">
                                     Detalles
@@ -55,7 +62,6 @@
                                     Editar
                                 </a>
                                 </td>
-                                
                             </tr>
                         @endforeach
                     </tbody>

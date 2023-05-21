@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pinturas', function (Blueprint $table) {
+        Schema::create('archivos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pintura_id')->constrained()->onDelete('cascade');
             $table->string('nombre');
-            $table->text('descripcion');
-            $table->decimal('precio', 6, 2);
+            $table->string('nombre_hash');
+            $table->string('mime');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pinturas');
+        Schema::dropIfExists('archivos');
     }
 };

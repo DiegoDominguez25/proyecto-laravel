@@ -3,7 +3,8 @@
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PinturaController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArchivoController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/contacto', [PaginaController::class, 'contacto']);
@@ -30,6 +31,9 @@ Route::get('/precios/{cupon_id?}', [PaginaController::class, 'precios']);
 
 Route::resource('pintura', PinturaController::class);
 
+Route::post('archivo',[ArchivoController::class, 'store'])->name('archivo.store');
+
+Route::get('archivo/{archivo}/descargar',[ArchivoController::class, 'descargar'])->name('archivo.descargar');
 
 Route::middleware([
     'auth:sanctum',

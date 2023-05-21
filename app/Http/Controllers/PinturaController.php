@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Pintura;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Gate;
 
 class PinturaController extends Controller
 {
+
+        public function __construct()
+        {
+            $this->middleware('auth');
+        }
+
+        // Para el gate, tuve que asignar el rol en la tabla usuarios
+        // desde la base de datos, ya que no encontre manera en las
+        // factories de crear usuarios con los roles al azar, pero funciona
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pinturas = Pintura::get();
+        $pinturas = Pintura::with('categoria')->get();
         return view('paginas.indexProducto', compact('pinturas'));
     }
 
@@ -23,7 +36,8 @@ class PinturaController extends Controller
      */
     public function create()
     {
-        return view('paginas.createProducto');
+        $categorias = Categoria::all();
+        return view('paginas.createProducto', compact('categorias'));
     }
 
     /**
@@ -31,22 +45,20 @@ class PinturaController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'nombre' => 'required|max:20|min:3',
-            'desc' => ['required','max:30','min:5'],
+            'descripcion' => ['required','max:30','min:5'],
             'precio' => 'required',
         ]);
 
-        $articulos = new Pintura();
+        $pintura = new Pintura($request->all());
 
-        $articulos->nombre = $request->nombre;
-        $articulos->descripcion = $request->desc;
-        $articulos->precio = $request->precio;
+        $cate = Categoria::find($request->categoria_id);
 
-        $articulos->save();
+        $cate->pinturas()->save($pintura);
 
-        return redirect('/pintura');
+        Alert::success('Registrado', 'El producto se ha guardado correctamente');
+        return redirect()->route('pintura.index');
     }
 
     /**
@@ -61,7 +73,12 @@ class PinturaController extends Controller
      */
     public function edit(Request $request, Pintura $pintura)
     {
-        return view('paginas.editProducto', compact('pintura'));
+        Gate::authorize('administrador');
+
+            return view('paginas.editProducto', compact('pintura'));
+
+
+
     }
 
     /**
@@ -70,18 +87,19 @@ class PinturaController extends Controller
     public function update(Request $request, Pintura $pintura)
     {
         $request->validate([
-            'nombre' => 'required|max:255|min:3',
-            'desc' => ['required'],
+            'nombre' => 'required|max:20|min:3',
+            'descripcion' => ['required','max:30','min:5'],
             'precio' => 'required',
         ]);
 
         $pintura->nombre = $request->nombre;
-        $pintura->descripcion = $request->desc;
+        $pintura->descripcion = $request->descripcion;
         $pintura->precio = $request->precio;
 
         $pintura->save();
 
-        return redirect('/pintura');
+        Alert::success('Guardado', 'Los cambios han sido guardados');
+        return redirect()->route('pintura.index');
     }
 
     /**
@@ -89,7 +107,10 @@ class PinturaController extends Controller
      */
     public function destroy(Pintura $pintura)
     {
+        Gate::authorize('administrador');
         $pintura->delete();
+        Alert::success('Eliminado', 'Eliminado exitosamente');
         return redirect()->route('pintura.index');
+
     }
 }

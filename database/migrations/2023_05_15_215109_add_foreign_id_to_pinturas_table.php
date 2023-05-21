@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pinturas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->text('descripcion');
-            $table->decimal('precio', 6, 2);
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('pinturas', function (Blueprint $table) {
+            $table->foreignId('categoria_id')->constrained();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pinturas');
+        Schema::table('pinturas', function (Blueprint $table) {
+            $table->dropColumn('categoria_id');
+        });
     }
 };
